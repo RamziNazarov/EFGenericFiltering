@@ -59,3 +59,35 @@ class FilteringParams
     string Name { get; set; }
 }
 ```
+
+
+### Usage
+```c#
+public class FilteringParams 
+{
+    int Id { get; set; }
+    string Name { get; set; }
+}
+
+public class ModelRepository 
+{
+    private readonly DataContext _context;
+
+    public class ModelRepository(DataContext context) 
+    {
+        _context = context;
+    }
+
+    // Обычный запрос
+    public List<Model> GetFilteredModels(FilteringParams parameters) 
+    {
+        return _context.Models.Where(m=> m.Name.Contains(parameters.Name) && m.Id.Equals(parameters.Id)).ToList();
+    }
+    
+    // Запрос с generic фильтрацией
+    public List<Model> GetGenericFilteredModels(FilteringParams parameters) 
+    {
+        return _context.Models.Filter(parameters).ToList();
+    }
+}
+```

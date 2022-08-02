@@ -81,7 +81,7 @@ public static class QueryableExtensions
             case Operations.NotEqual:
                 return Expression.NotEqual(left, right);
             case Operations.Contains:
-                return Expression.Call(left, Operations.Contains.ToString(), null, right, Expression.Constant(StringComparison.InvariantCultureIgnoreCase));
+                return Expression.Call(left, Operations.Contains.ToString(), null, right);
             default:
                 return null;
         }
