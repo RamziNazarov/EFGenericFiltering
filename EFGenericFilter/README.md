@@ -66,7 +66,7 @@ class FilteringParams
 public class FilteringParams 
 {
     int Id { get; set; }
-    [OperationType(Operations.Contains)
+    [OperationType(Operations.Contains)]
     string Name { get; set; }
 }
 
